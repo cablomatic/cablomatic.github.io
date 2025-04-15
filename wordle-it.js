@@ -1014,7 +1014,8 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
           winPercentage: 0,
           gamesPlayed: 0,
           gamesWon: 0,
-          averageGuesses: 0
+          averageGuesses: 0,
+          totalPoints: 0
       };
 
   function Ua() {
@@ -1026,13 +1027,16 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
       var a = e.isWin,
           s = e.isStreak,
           t = e.numGuesses,
-          o = Ua();
+          o = Ua(),
+          totalPoints = 0;
       a ? (o.guesses[t] += 1, s ? o.currentStreak += 1 : o.currentStreak = 1) : (o.currentStreak = 0, o.guesses.fail += 1), o.maxStreak = Math.max(o.currentStreak, o.maxStreak), o.gamesPlayed += 1, o.gamesWon += a ? 1 : 0, o.winPercentage = Math.round(o.gamesWon / o.gamesPlayed * 100), o.averageGuesses = Math.round(Object.entries(o.guesses).reduce((function(e, a) {
               var s = y(a, 2),
                   t = s[0],
                   o = s[1];
               return t !== Ya ? e += t * o : e
           }), 0) / o.gamesWon),
+          totalPoints = Math.round((o.guesses[1]/o.gamesPlayed * 1000) + (o.guesses[2]/o.gamesPlayed * 500)+ (o.guesses[3]/o.gamesPlayed * 250)+ (o.guesses[4]/o.gamesPlayed * 125)+ (o.guesses[5]/o.gamesPlayed * 60) + (o.guesses[6]/o.gamesPlayed * 30) + (o.guesses.fail/o.gamesPlayed * -15)),
+          o.gamesPlayed < 20 ? o.totalPoints = Math.round((totalPoints * 200)/(1000)): o.totalPoints = totalPoints,
           function(e) {
               window.localStorage.setItem(Wa, JSON.stringify(e))
           }(o)
@@ -1389,7 +1393,8 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
           winPercentage: "% Vittorie",
           gamesPlayed: "Partite",
           gamesWon: "Vinte",
-          averageGuesses: "Numero medio di tentativi"
+          averageGuesses: "Numero medio di tentativi",
+          totalPoints: "Punteggio"
       },
       ys = function(e) {
           n(t, e);
@@ -1419,7 +1424,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                           u && o === u && d.classList.add("highlight")
                       }
                       s.appendChild(i)
-                  } ["gamesPlayed", "winPercentage", "currentStreak", "maxStreak"].forEach((function(s) {
+                  } ["gamesPlayed", "winPercentage", "currentStreak", "maxStreak","totalPoints"].forEach((function(s) {
                       var t = hs[s],
                           o = e.stats[s],
                           r = ps.content.cloneNode(!0);
@@ -1434,8 +1439,9 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                               r = e.isWin,
                               n = JSON.parse(window.localStorage.getItem(j)),
                               i = JSON.parse(window.localStorage.getItem(S)),
+                              p = JSON.parse(window.localStorage.getItem("statistics")),
                               l = "Par🇮🇹le n°".concat(s);
-                          l += " ".concat(r ? t : "X", "/").concat(6), o && (l += "*");
+                          l += " ".concat(r ? t : "X", "/").concat(6), o && (l += "*"), l+=" p:" + p.totalPoints;
                           var d = "";
                           return a.forEach((function(e) {
                               e && (e.forEach((function(e) {
