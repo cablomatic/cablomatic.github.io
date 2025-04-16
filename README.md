@@ -1,6 +1,6 @@
 # Par🇮🇹le
 
-https://pietroppeter.github.io/wordle-it/
+https://cablomatic.github.io/wordle-it/
 
 Una versione italiana (non ufficiale) di [WORDLE](https://www.nytimes.com/games/wordle/index.html). Se l'autore di Wordle non approva, lo tiro giù: https://twitter.com/pietroppeter/status/1477993203425030144?s=20
 
@@ -18,6 +18,6 @@ Apart from English translation, the actual work was to replace two list of words
 
 Run `nim r itLines` and replace two lines in wordle-it.js to regenerate.
 
-Analytics publicly available at: https://plausible.io/pietroppeter.github.io%2Fwordle-it
+Analytics publicly available at: https://plausible.io/cablomatic.github.io%2Fwordle-it
 
 To reset state (also works for original wordle), type in console of your browser: `window.localStorage.clear()`
