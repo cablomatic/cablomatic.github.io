@@ -1036,7 +1036,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
               return t !== Ya ? e += t * o : e
           }), 0) / o.gamesWon),
           totalPoints = Math.round((o.guesses[1]/o.gamesPlayed * 1000) + (o.guesses[2]/o.gamesPlayed * 500)+ (o.guesses[3]/o.gamesPlayed * 250)+ (o.guesses[4]/o.gamesPlayed * 125)+ (o.guesses[5]/o.gamesPlayed * 60) + (o.guesses[6]/o.gamesPlayed * 30) + (o.guesses.fail/o.gamesPlayed * -15)),
-          o.gamesPlayed < 20 ? o.totalPoints = Math.round((totalPoints * 200)/(1000)): o.totalPoints = totalPoints,
+          o.gamesPlayed < 15 ? o.totalPoints = Math.round(o.gamesPlayed*10): o.totalPoints = totalPoints,
           function(e) {
               window.localStorage.setItem(Wa, JSON.stringify(e))
           }(o)
