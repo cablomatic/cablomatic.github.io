@@ -869,7 +869,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
       }(va(a, e))
   }
   var Sa = document.createElement("template");
-  Sa.innerHTML = '\n  <style>\n  .setting {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    border-bottom: 1px solid var(--color-tone-4);\n    padding: 16px 0;\n  }\n\n  a, a:visited {\n    color: var(--color-tone-2);\n  }\n\n  .title {\n    font-size: 18px;\n  }\n  .text {\n    padding-right: 8px;\n  }\n  .description {\n    font-size: 12px;\n    color: var(--color-tone-2);\n  }\n\n  #footnote {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n    padding: 16px;\n    color: var(--color-tone-2);\n    font-size: 12px;\n    text-align: right;\n  }\n\n  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {\n    .setting {\n      padding: 16px;\n    }\n  }\n\n  </style>\n  <div class="sections">\n    <section>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Il gioco si fa duro</div>\n          <div class="description">Ogni lettera nota deve essere usata nei tentativi successivi</div>\n        </div>\n        <div class="control">\n          <game-switch id="hard-mode" name="hard-mode"></game-switch>\n        </div>\n      </div>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Tema nero</div>\n        </div>\n        <div class="control">\n          <game-switch id="dark-theme" name="dark-theme"></game-switch>\n        </div>\n      </div>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Colori ad alto contrasto</div>\n        </div>\n        <div class="control">\n          <game-switch id="color-blind-theme" name="color-blind-theme"></game-switch>\n        </div>\n      </div>\n    </section>\n\n    <section>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Feedback</div>\n        </div>\n        <div class="control">\n          <a href="https://github.com/pietroppeter/wordle-it/issues/new" target="blank" title="github.com/pietroppeter/wordle-it">Github</a>\n          |\n          <a href="https://twitter.com/intent/tweet?screen_name=pietroppeter" target="blank" title="@pietroppeter">Twitter</a>\n        </div>\n      </div>\n    </section>\n  </div>\n  <div id="footnote">\n    <div id="puzzle-number"></div>\n    <div id="hash"></div>\n  <div>\n';
+  Sa.innerHTML = '\n  <style>\n  .setting {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    border-bottom: 1px solid var(--color-tone-4);\n    padding: 16px 0;\n  }\n\n  a, a:visited {\n    color: var(--color-tone-2);\n  }\n\n  .title {\n    font-size: 18px;\n  }\n  .text {\n    padding-right: 8px;\n  }\n  .description {\n    font-size: 12px;\n    color: var(--color-tone-2);\n  }\n\n  #footnote {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n    padding: 16px;\n    color: var(--color-tone-2);\n    font-size: 12px;\n    text-align: right;\n  }\n\n  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {\n    .setting {\n      padding: 16px;\n    }\n  }\n\n  </style>\n  <div class="sections">\n    <section>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Il gioco si fa duro</div>\n          <div class="description">Ogni lettera nota deve essere usata nei tentativi successivi</div>\n        </div>\n        <div class="control">\n          <game-switch id="hard-mode" name="hard-mode"></game-switch>\n        </div>\n      </div>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Tema nero</div>\n        </div>\n        <div class="control">\n          <game-switch id="dark-theme" name="dark-theme"></game-switch>\n        </div>\n      </div>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Colori ad alto contrasto</div>\n        </div>\n        <div class="control">\n          <game-switch id="color-blind-theme" name="color-blind-theme"></game-switch>\n        </div>\n      </div>\n    </section>\n\n    <section>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Feedback</div>\n        </div>\n        <div class="control">\n          <a href="https://github.com/cablomatic/wordle-it/issues/new" target="blank" title="github.com/cablomatic/wordle-it">Github</a>\n          |\n          <a href="https://twitter.com/intent/tweet?screen_name=cablomatic" target="blank" title="@cablomatic">Twitter</a>\n        </div>\n      </div>\n    </section>\n  </div>\n  <div id="footnote">\n    <div id="puzzle-number"></div>\n    <div id="hash"></div>\n  <div>\n';
   var _a = function(e) {
       n(t, e);
       var a = h(t);
@@ -1014,8 +1014,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
           winPercentage: 0,
           gamesPlayed: 0,
           gamesWon: 0,
-          averageGuesses: 0,
-          totalPoints: 0
+          averageGuesses: 0
       };
 
   function Ua() {
@@ -1027,16 +1026,13 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
       var a = e.isWin,
           s = e.isStreak,
           t = e.numGuesses,
-          o = Ua(),
-          totalPoints = 0;
+          o = Ua();
       a ? (o.guesses[t] += 1, s ? o.currentStreak += 1 : o.currentStreak = 1) : (o.currentStreak = 0, o.guesses.fail += 1), o.maxStreak = Math.max(o.currentStreak, o.maxStreak), o.gamesPlayed += 1, o.gamesWon += a ? 1 : 0, o.winPercentage = Math.round(o.gamesWon / o.gamesPlayed * 100), o.averageGuesses = Math.round(Object.entries(o.guesses).reduce((function(e, a) {
               var s = y(a, 2),
                   t = s[0],
                   o = s[1];
               return t !== Ya ? e += t * o : e
           }), 0) / o.gamesWon),
-          totalPoints = Math.round((o.guesses[1]/o.gamesPlayed * 1000) + (o.guesses[2]/o.gamesPlayed * 500)+ (o.guesses[3]/o.gamesPlayed * 250)+ (o.guesses[4]/o.gamesPlayed * 125)+ (o.guesses[5]/o.gamesPlayed * 60) + (o.guesses[6]/o.gamesPlayed * 30) + (o.guesses.fail/o.gamesPlayed * -15)),
-          o.gamesPlayed < 20 ? o.totalPoints = Math.round((totalPoints * 200)/(1000)): o.totalPoints = totalPoints,
           function(e) {
               window.localStorage.setItem(Wa, JSON.stringify(e))
           }(o)
@@ -1393,8 +1389,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
           winPercentage: "% Vittorie",
           gamesPlayed: "Partite",
           gamesWon: "Vinte",
-          averageGuesses: "Numero medio di tentativi",
-          totalPoints: "Punteggio"
+          averageGuesses: "Numero medio di tentativi"
       },
       ys = function(e) {
           n(t, e);
@@ -1424,7 +1419,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                           u && o === u && d.classList.add("highlight")
                       }
                       s.appendChild(i)
-                  } ["gamesPlayed", "winPercentage", "currentStreak", "maxStreak","totalPoints"].forEach((function(s) {
+                  } ["gamesPlayed", "winPercentage", "currentStreak", "maxStreak"].forEach((function(s) {
                       var t = hs[s],
                           o = e.stats[s],
                           r = ps.content.cloneNode(!0);
@@ -1439,9 +1434,8 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                               r = e.isWin,
                               n = JSON.parse(window.localStorage.getItem(j)),
                               i = JSON.parse(window.localStorage.getItem(S)),
-                              p = JSON.parse(window.localStorage.getItem("statistics")),
                               l = "Par🇮🇹le n°".concat(s);
-                          l += " ".concat(r ? t : "X", "/").concat(6), o && (l += "*"), l+=" p:" + p.totalPoints;
+                          l += " ".concat(r ? t : "X", "/").concat(6), o && (l += "*");
                           var d = "";
                           return a.forEach((function(e) {
                               e && (e.forEach((function(e) {
@@ -1522,7 +1516,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
   }(c(HTMLElement));
   customElements.define("game-switch", bs);
   var fs = document.createElement("template");
-  fs.innerHTML = '\n  <style>\n  .instructions {\n    font-size: 14px;\n    color: var(--color-tone-1)\n  }\n\n  .examples {\n    border-bottom: 1px solid var(--color-tone-4);\n    border-top: 1px solid var(--color-tone-4);\n  }\n\n  .example {\n    margin-top: 24px;\n    margin-bottom: 24px;\n  }\n\n  game-tile {\n    width: 40px;\n    height: 40px;\n  }\n\n  :host([page]) section {\n    padding: 16px;\n    padding-top: 0px;\n  }\n\n  </style>\n  <section>\n    <div class="instructions">\n      <p>Indovina delle <strong>PARoLE</strong> di 5 lettere in 6 tentativi.</p>\n      <p>PAR🇮🇹LE è una versione italiana (non ufficiale) di <a href="https://www.nytimes.com/games/wordle/index.html">WORDLE</a></p>\n      <p>Dopo ogni tentativo, i colori delle tessere cambieranno per mostrarti quanto vicino sei andato ad indovinare la parola.</p>\n      <div class="examples">\n        <div class="example">\n          <div class="row">\n            <game-tile letter="b" evaluation="correct" reveal></game-tile>\n            <game-tile letter="u"></game-tile>\n            <game-tile letter="f"></game-tile>\n            <game-tile letter="f"></game-tile>\n            <game-tile letter="a"></game-tile>\n          </div>\n          <p>La lettera <strong>B</strong> è nella parola ed è nel posto giusto.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="p"></game-tile>\n            <game-tile letter="o"></game-tile>\n            <game-tile letter="r" evaluation="present" reveal></game-tile>\n            <game-tile letter="t"></game-tile>\n            <game-tile letter="o"></game-tile>\n          </div>\n          <p>La lettera <strong>R</strong> è nella parola ma nel posto sbagliato.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="v"></game-tile>\n            <game-tile letter="a"></game-tile>\n            <game-tile letter="g"></game-tile>\n            <game-tile letter="h" evaluation="absent" reveal></game-tile>\n            <game-tile letter="i"></game-tile>\n          </div>\n          <p>La lettera <strong>H</strong> non è nella parola.</p>\n        </div>\n      </div>\n      <p><strong>Un nuovo gioco di PAR🇮🇹LE ogni giorno!<strong></p>\n    </div>\n  </section>\n';
+  fs.innerHTML = '\n  <style>\n  .instructions {\n    font-size: 14px;\n    color: var(--color-tone-1)\n  }\n\n  .examples {\n    border-bottom: 1px solid var(--color-tone-4);\n    border-top: 1px solid var(--color-tone-4);\n  }\n\n  .example {\n    margin-top: 24px;\n    margin-bottom: 24px;\n  }\n\n  game-tile {\n    width: 40px;\n    height: 40px;\n  }\n\n  :host([page]) section {\n    padding: 16px;\n    padding-top: 0px;\n  }\n\n  </style>\n  <section>\n    <div class="instructions">\n      <p>Indovina delle <strong>PARoLE</strong> di 5 lettere in 6 tentativi.</p>\n      <p>PAR🇮🇹LE è una versione italiana (non ufficiale) di <a href="https://www.nytimes.com/games/wordle/index.html">WORDLE</a></p>\n      <p>Dopo ogni tentativo, i colori delle tessere cambieranno per mostrarti quanto vicino sei andato ad indovinare la parola.</p>\n      <div class="examples">\n        <div class="example">\n          <div class="row">\n            <game-tile letter="b" evaluation="correct" reveal></game-tile>\n            <game-tile letter="u"></game-tile>\n            <game-tile letter="f"></game-tile>\n            <game-tile letter="f"></game-tile>\n            <game-tile letter="a"></game-tile>\n          </div>\n          <p>La lettera <strong>B</strong> è nella parola ed è nel posto giusto.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="p"></game-tile>\n            <game-tile letter="o"></game-tile>\n            <game-tile letter="r" evaluation="present" reveal></game-tile>\n            <game-tile letter="t"></game-tile>\n            <game-tile letter="o"></game-tile>\n          </div>\n          <p>La lettera <strong>R</strong> è nella parola ma nel posto sbagliato.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="v"></game-tile>\n            <game-tile letter="a"></game-tile>\n            <game-tile letter="g"></game-tile>\n            <game-tile letter="h" evaluation="absent" reveal></game-tile>\n            <game-tile letter="i"></game-tile>\n          </div>\n          <p>La lettera <strong>H</strong> non è nella parola.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="n" evaluation="present" reveal></game-tile>\n            <game-tile letter="o" evaluation="present" reveal></game-tile>\n            <game-tile letter="n" evaluation="correct" reveal></game-tile>\n            <game-tile letter="n" evaluation="absent" reveal></game-tile>\n            <game-tile letter="o" evaluation="absent" reveal></game-tile>\n          </div>\n          <p>La lettera <strong>N</strong> appare esattamente 2 volte nella parola, una in 3a posizione, una in 2a o 5a posizione.</p>\n          <p>La lettera <strong>O</strong> appare esattamente 1 volta nella parola, non in 2a o 5a posizione.</p>\n        </div>\n      </div>\n      <p><strong>Un nuovo gioco di PAR🇮🇹LE ogni giorno!<strong></p>\n    </div>\n  </section>';
   var ks = function(e) {
       n(t, e);
       var a = h(t);
